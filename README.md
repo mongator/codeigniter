@@ -13,10 +13,18 @@ Requirements
 Installation
 ------------
 
-You should generally use the spark system to install mongator. From the terminal, and inside the root of a CodeIgniter project, type:
+You should generally use the spark system to install mongator. From the terminal, and inside the root of your CodeIgniter project, type:
 
 ```
 php tools/spark install -v0.0.1 mongator
+```
+
+After this you need install all the mongator spark dependencies [through composer](http://getcomposer.org).
+Again inside the root of your CodeIgniter project, type:
+
+```
+cd  ./sparks/mongator/
+composer install
 ```
 
 Configuration
