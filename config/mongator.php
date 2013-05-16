@@ -24,7 +24,7 @@ $config['mongator_connection_dsn'] = 'mongodb://localhost:27017';
 |
 */
 
-$config['mongator_connection_database'] = '';
+$config['mongator_connection_database'] = 'database';
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,31 @@ $config['mongator_connection_database'] = '';
 
 $config['mongator_connection_name'] = 'default';
 
+/*
+|--------------------------------------------------------------------------
+| Mongator Models input path
+|--------------------------------------------------------------------------
+|
+| The input path of the classes, A valid dir with YAML definitions of the 
+| config classes, you must save the YAMLs config classes in this path. 
+|
+*/
+
+$config['mongator_models_input'] = __DIR__ . '/../input/';
+
+/*
+|--------------------------------------------------------------------------
+| Models namespace
+|--------------------------------------------------------------------------
+|
+| The output path of the classes. 
+| Example: 
+| If you models are call 'MyApp\Models\Article' you must set this as 'MyApp'
+|
+*/
+
+$config['mongator_models_namespace'] = 'Model';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,13 +77,14 @@ $config['mongator_connection_name'] = 'default';
 
 $config['mongator_metadata_class'] = 'Model\Mapping\Metadata';
 
-
 /*
-mongator_logger (default null): instance of a logger class
-mongator_cache_fields (default ArrayCache): instance of a mongator cache driver used in fields cache
-mongator_cache_data (default ArrayCache): instance of a mongator cache driver used in data cache
-mongator_extensions (default Array()): array of extension instances
-mongator_models_output: output path of the classes
-mongator_classes_config (default Array()): The config classes contain the information of the classes
-mongator_classes_yaml.path: A valid dir with YAML definitions of the config classes
+|--------------------------------------------------------------------------
+| Mongator Models output path
+|--------------------------------------------------------------------------
+|
+| The output path of the classes, just change it if you know what are you
+| doing.  
+|
 */
+
+$config['mongator_models_output'] = __DIR__ . '/../output/';

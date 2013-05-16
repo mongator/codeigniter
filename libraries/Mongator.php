@@ -33,6 +33,12 @@ class Mongator {
 
         $this->CI = get_instance();
         $this->CI->load->config('mongator');
+
+        $this->loader = require __DIR__.'/../vendor/autoload.php';
+        $this->loader->add(
+             $this->getConfig('mongator_models_namespace'), 
+             $this->getConfig('mongator_models_output')
+        );
     }
 
     public function __call($method, $arguments)
