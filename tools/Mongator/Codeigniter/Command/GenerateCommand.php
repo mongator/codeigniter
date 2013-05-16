@@ -30,8 +30,8 @@ class GenerateCommand extends Command
 
         $output->write('<info>Generating models... </info>', false);        
         
-        
-        if ( !$path = $ci->config->item('mongator_models_input') || !is_dir($path) ) {
+        $path = $ci->config->item('mongator_models_input');
+        if ( !$path || !is_dir($path) ) {
             throw new \LogicException(
                 'Configured "mongator_models_input" not is a valid path.'
             );
