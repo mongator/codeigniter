@@ -1,6 +1,6 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
- * This file is part of the Skeetr package.
+ * This file is part of the Mongator package.
  *
  * (c) Máximo Cuadros <maximo@yunait.com>
  *
