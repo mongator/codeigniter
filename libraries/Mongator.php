@@ -11,7 +11,6 @@
 
 $loader = require __DIR__.'/../vendor/autoload.php';
 
-
 /**
  * Mongator wrapper
  * @package mongator
