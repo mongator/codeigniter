@@ -47,7 +47,7 @@ class Mongator {
     {
         if ( $this->mongator ) return $this->mongator;
 
-        $this->mongator = new Mongator\Mongator($this->getMetadata());
+        $this->mongator = new Mongator\Mongator($this->getMetadata(), $this->getLogger());
 
         $this->mongator->setFieldsCache($this->getFieldsCache());
         $this->mongator->setDataCache($this->getDataCache());
@@ -55,6 +55,8 @@ class Mongator {
             $this->getConfig('mongator_connection_name'),
             $this->getConnection()
         );
+
+        $this->mongator->setDefaultConnectionName($this->getConfig('mongator_connection_name'));
 
         return $this->mongator;
     }
@@ -107,6 +109,28 @@ class Mongator {
 
         $this->connection = new Mongator\Connection($dsn, $database);
         return $this->connection;
+    }
+
+    private function getLogger()
+    {
+        if ( ENVIRONMENT != 'development' ) return null;
+
+        if ( $this->logger ) return $this->logger;
+
+        $querys = 0;
+        $this->logger = function($call) use (&$querys) {
+            if ( !isset($call['collection']) ) $call['collection'] = 'none';
+
+            $msg = sprintf(
+                '[mongator] %s@%s.%s in %d sec(s), #%d',  
+                $call['type'], $call['database'], 
+                $call['collection'], $call['time'], ++$querys
+            );
+
+            log_message('debug', $msg);
+        };
+
+        return $this->logger;
     }
 
     private function getConfig($key)

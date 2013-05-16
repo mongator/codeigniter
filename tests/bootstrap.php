@@ -6,7 +6,14 @@ $loader->add('Model', __DIR__);
 use Mandango\Mondator\Mondator;
 
 $mondator = new Mondator();
-$mondator->setConfigClasses(array());
+$mondator->setConfigClasses(array(
+    'Model\Example' => array(
+        'fields' => array(
+            'foo' => 'string'
+        )
+    )
+));
+
 $mondator->setExtensions(array(
     new Mongator\Extension\Core(array(
         'metadata_factory_class'  => 'Model\Mapping\Metadata',
