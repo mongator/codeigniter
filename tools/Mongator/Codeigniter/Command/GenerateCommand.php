@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Mongator\Codeigniter\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,8 +27,8 @@ class GenerateCommand extends Command
         $ci = get_instance();
         $mondator = new \Mondator();
 
-        $output->write('<info>Generating models... </info>', false);        
-        
+        $output->write('<info>Generating models... </info>', false);
+
         $path = $ci->config->item('mongator_models_input');
         if ( !$path || !is_dir($path) ) {
             throw new \LogicException(
@@ -43,13 +42,12 @@ class GenerateCommand extends Command
         $output->writeln('<comment>Done</comment>');
     }
 
-
     private function readYAMLs($paths)
     {
-        if ( !is_array($paths) ) $paths = (array)$paths;
+        if ( !is_array($paths) ) $paths = (array) $paths;
 
         $defs = array();
-        foreach($paths as $path) {
+        foreach ($paths as $path) {
             foreach ($this->findYAMLs($path . '/*.yaml') as $file) {
                 $defs = array_merge($defs, yaml_parse(file_get_contents($file)));
             }
@@ -61,11 +59,11 @@ class GenerateCommand extends Command
     private function findYAMLs($pattern, $flags = 0)
     {
         $files = glob($pattern, $flags);
-        
+
         foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR) as $dir) {
             $files = array_merge($files, $this->findYAMLs($dir.'/'.basename($pattern), $flags));
         }
-        
+
         return $files;
     }
 }

@@ -8,18 +8,18 @@
  * file that was distributed with this source code.
  */
 
-
 $loader = require __DIR__.'/../vendor/autoload.php';
 
 /**
  * Mondator wrapper
  * @package mongator
  */
-class Mondator {
+class Mondator
+{
     private $CI;
 
     private $mondator;
- 
+
     public function __construct()
     {
         log_message('debug', 'Mondator Class Initialized');

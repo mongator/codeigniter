@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Mongator\Codeigniter\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +26,7 @@ class IndexesCommand extends Command
     {
         $mongator = new \Mongator();
 
-        $output->write('<info>Ensuring Indexes... </info>', false);        
+        $output->write('<info>Ensuring Indexes... </info>', false);
         $mongator->ensureAllIndexes();
 
         $output->writeln('<comment>Done</comment>');

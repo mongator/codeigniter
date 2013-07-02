@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-
 $loader = require __DIR__.'/../vendor/autoload.php';
 
 /**
  * Mongator wrapper
  * @package mongator
  */
-class Mongator {
+class Mongator
+{
     private $CI;
 
     private $mongator;
@@ -35,7 +35,7 @@ class Mongator {
 
         $this->loader = require __DIR__.'/../vendor/autoload.php';
         $this->loader->add(
-             $this->getConfig('mongator_models_namespace'), 
+             $this->getConfig('mongator_models_namespace'),
              $this->getConfig('mongator_models_output')
         );
     }
@@ -77,6 +77,7 @@ class Mongator {
         }
 
         $this->metadata = new $class();
+
         return $this->metadata;
     }
 
@@ -85,6 +86,7 @@ class Mongator {
         if ( $this->fieldsCache ) return $this->fieldsCache;
 
         $this->fieldsCache = new Mongator\Cache\ArrayCache();
+
         return $this->fieldsCache;
     }
 
@@ -93,6 +95,7 @@ class Mongator {
         if ( $this->dataCache ) return $this->dataCache;
 
         $this->dataCache = new Mongator\Cache\ArrayCache();
+
         return $this->dataCache;
     }
 
@@ -105,7 +108,7 @@ class Mongator {
                 'You must configure "mongator_connection_dsn" to this spark'
             );
         }
-    
+
         if (!$database = $this->getConfig('mongator_connection_database')) {
             throw new \LogicException(
                 'You must configure "mongator_connection_database" to this spark'
@@ -113,6 +116,7 @@ class Mongator {
         }
 
         $this->connection = new Mongator\Connection($dsn, $database);
+
         return $this->connection;
     }
 
@@ -127,8 +131,8 @@ class Mongator {
             if ( !isset($call['collection']) ) $call['collection'] = 'none';
 
             $msg = sprintf(
-                '[mongator] %s@%s.%s in %d sec(s), #%d',  
-                $call['type'], $call['database'], 
+                '[mongator] %s@%s.%s in %d sec(s), #%d',
+                $call['type'], $call['database'],
                 $call['collection'], $call['time'], ++$querys
             );
 
